@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitForge Gym | Registro</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-black text-orange-100">
+    <header class="border-b border-orange-500/40 bg-gradient-to-r from-black via-zinc-950 to-orange-950/60">
+        <div class="mx-auto max-w-4xl px-4 py-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-400">FitForge Gym</p>
+            <h1 class="mt-2 text-3xl font-black leading-tight text-orange-200">Formulario de Inscripcion Fitness</h1>
+            <p class="mt-3 max-w-2xl text-sm text-orange-100/85">
+                Completa tu registro en 3 pasos. El formulario valida tu informacion y se adapta a tu respuesta.
+            </p>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-4xl px-4 py-8">
+        <section aria-labelledby="registro-title"
+            class="rounded-2xl border border-orange-500/40 bg-zinc-950/80 p-4 shadow-xl shadow-orange-900/20 backdrop-blur sm:p-6">
+            <h2 id="registro-title" class="sr-only">Registro de membresia</h2>
+
+            <div class="mb-8" aria-label="Progreso de registro">
+                <div
+                    class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-orange-300">
+                    <span id="stepLabel1" class="text-orange-400">1. Personal</span>
+                    <span id="stepLabel2" class="text-orange-200/70">2. Suscripcion</span>
+                    <span id="stepLabel3" class="text-orange-200/70">3. Pago</span>
+                </div>
+                <div class="h-2 overflow-hidden rounded-full bg-zinc-800">
+                    <div id="progressBar"
+                        class="h-full w-1/3 rounded-full bg-gradient-to-r from-orange-500 to-orange-300 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+
+            <form id="gymForm" novalidate class="space-y-8">
+                <fieldset data-step="1" class="step-panel space-y-5" aria-labelledby="step1-heading">
+                    <legend id="step1-heading" class="text-xl font-bold text-orange-300">Paso 1: Informacion personal
+                    </legend>
+
+                    <div>
+                        <label for="fullName" class="mb-1 block text-sm font-medium">Nombre completo</label>
+                        <input id="fullName" name="fullName" type="text" required minlength="3" autocomplete="name"
+                            class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none ring-0 transition focus:border-orange-400"
+                            placeholder="Ej: Camila Rodriguez" />
+                        <p class="mt-1 text-sm text-red-400" data-error-for="fullName"></p>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="email" class="mb-1 block text-sm font-medium">Correo electronico</label>
+                            <input id="email" name="email" type="email" required autocomplete="email"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400"
+                                placeholder="tu@email.com" />
+                            <p class="mt-1 text-sm text-red-400" data-error-for="email"></p>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="mb-1 block text-sm font-medium">Telefono</label>
+                            <input id="phone" name="phone" type="tel" required autocomplete="tel"
+                                pattern="^[0-9+\-\s]{7,15}$"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400"
+                                placeholder="+57 3001234567" />
+                            <p class="mt-1 text-sm text-red-400" data-error-for="phone"></p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="mb-1 block text-sm font-medium">Contrasena</label>
+                        <div class="relative">
+                            <input id="password" name="password" type="password" required minlength="8"
+                                autocomplete="new-password"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 pr-12 text-orange-50 outline-none transition focus:border-orange-400"
+                                placeholder="Minimo 8 caracteres" />
+                            <button id="togglePassword" type="button" aria-label="Mostrar contrasena"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-2 text-orange-300 hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400">
+                                <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    fill="currentColor" class="h-5 w-5">
+                                    <path
+                                        d="M12 5c-5.23 0-9.24 3.28-10.82 6.79a1.5 1.5 0 000 1.42C2.76 16.72 6.77 20 12 20s9.24-3.28 10.82-6.79a1.5 1.5 0 000-1.42C21.24 8.28 17.23 5 12 5zm0 12c-3.77 0-7.07-2.24-8.6-5 1.53-2.76 4.83-5 8.6-5s7.07 2.24 8.6 5c-1.53 2.76-4.83 5-8.6 5zm0-8a3 3 0 100 6 3 3 0 000-6z" />
+                                </svg>
+                                <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    fill="currentColor" class="hidden h-5 w-5">
+                                    <path
+                                        d="M3.28 2.22L2.22 3.28l3.1 3.1C3.6 7.55 2.2 9.47 1.18 11.79a1.5 1.5 0 000 1.42C2.76 16.72 6.77 20 12 20c2.14 0 4.1-.55 5.81-1.47l2.91 2.91 1.06-1.06L3.28 2.22zM12 17c-3.77 0-7.07-2.24-8.6-5 .83-1.5 2.06-2.84 3.56-3.76l1.92 1.92A3.98 3.98 0 008 12a4 4 0 006.02 3.44l2.52 2.52A10.5 10.5 0 0112 17zm.26-8.99l3.72 3.72c.01-.08.02-.15.02-.23a4 4 0 00-4-4l-.23.01zM12 5c5.23 0 9.24 3.28 10.82 6.79.14.31.19.65.17.99l-1.53-1.53C19.84 8.95 16.22 7 12 7c-.58 0-1.14.04-1.69.11L8.63 5.43C9.7 5.15 10.83 5 12 5z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="mt-1 text-sm text-red-400" data-error-for="password"></p>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-3">
+                        <div>
+                            <label for="country" class="mb-1 block text-sm font-medium">Pais</label>
+                            <select id="country" name="country" required
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400">
+                                <option value="">Selecciona un pais</option>
+                            </select>
+                            <p class="mt-1 text-sm text-red-400" data-error-for="country"></p>
+                        </div>
+                        <div>
+                            <label for="department" class="mb-1 block text-sm font-medium">Departamento / Estado</label>
+                            <select id="department" name="department" required disabled
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400 disabled:opacity-50">
+                                <option value="">Selecciona primero un pais</option>
+                            </select>
+                            <p class="mt-1 text-sm text-red-400" data-error-for="department"></p>
+                        </div>
+                        <div>
+                            <label for="city" class="mb-1 block text-sm font-medium">Ciudad</label>
+                            <select id="city" name="city" required disabled
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400 disabled:opacity-50">
+                                <option value="">Selecciona primero un departamento</option>
+                            </select>
+                            <p class="mt-1 text-sm text-red-400" data-error-for="city"></p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium">Tienes alguna condicion fisica a destacar?</p>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="inline-flex items-center gap-2">
+                                <input type="radio" name="hasCondition" value="si" required class="accent-orange-500" />
+                                <span>Si</span>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="radio" name="hasCondition" value="no" required class="accent-orange-500" />
+                                <span>No</span>
+                            </label>
+                        </div>
+                        <p class="mt-1 text-sm text-red-400" data-error-for="hasCondition"></p>
+
+                        <div id="conditionField" class="hidden">
+                            <label for="conditionDetails" class="mb-1 block text-sm font-medium">Describe la
+                                condicion</label>
+                            <input id="conditionDetails" name="conditionDetails" type="text"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400"
+                                placeholder="Ej: Lesion de rodilla, asma, etc." />
+                            <p class="mt-1 text-sm text-red-400" data-error-for="conditionDetails"></p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset data-step="2" class="step-panel hidden space-y-5" aria-labelledby="step2-heading">
+                    <legend id="step2-heading" class="text-xl font-bold text-orange-300">Paso 2: Tipo de suscripcion
+                    </legend>
+
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium">Elige un plan</p>
+                        <div class="grid gap-3 sm:grid-cols-3">
+                            <label class="rounded-xl border border-zinc-700 p-3 hover:border-orange-400">
+                                <input type="radio" name="plan" value="mensual" required
+                                    class="mr-2 accent-orange-500" />Mensual
+                            </label>
+                            <label class="rounded-xl border border-zinc-700 p-3 hover:border-orange-400">
+                                <input type="radio" name="plan" value="trimestral" required
+                                    class="mr-2 accent-orange-500" />Trimestral
+                            </label>
+                            <label class="rounded-xl border border-zinc-700 p-3 hover:border-orange-400">
+                                <input type="radio" name="plan" value="anual" required
+                                    class="mr-2 accent-orange-500" />Anual
+                            </label>
+                        </div>
+                        <p class="mt-1 text-sm text-red-400" data-error-for="plan"></p>
+                    </div>
+
+                    <div>
+                        <p class="mb-2 text-sm font-medium">Servicios extra (checkbox)</p>
+                        <div class="grid gap-2 sm:grid-cols-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="extras"
+                                    value="nutricion" class="accent-orange-500" />Asesoria de nutricion</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="extras"
+                                    value="personal" class="accent-orange-500" />Entrenador personal</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="extras"
+                                    value="spa" class="accent-orange-500" />Zona recovery + spa</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="extras"
+                                    value="cross" class="accent-orange-500" />Cross training</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="goals" class="mb-1 block text-sm font-medium">Objetivo principal (textarea)</label>
+                        <textarea id="goals" name="goals" rows="4" required minlength="10"
+                            class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400"
+                            placeholder="Cuéntanos tu objetivo fitness"></textarea>
+                        <p class="mt-1 text-sm text-red-400" data-error-for="goals"></p>
+                    </div>
+
+                    <div>
+                        <label for="schedule" class="mb-1 block text-sm font-medium">Horario preferido</label>
+                        <select id="schedule" name="schedule" required
+                            class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400">
+                            <option value="">Selecciona un horario</option>
+                            <option value="manana">Manana (6:00 - 11:00)</option>
+                            <option value="tarde">Tarde (12:00 - 17:00)</option>
+                            <option value="noche">Noche (18:00 - 22:00)</option>
+                        </select>
+                        <p class="mt-1 text-sm text-red-400" data-error-for="schedule"></p>
+                    </div>
+                </fieldset>
+
+                <fieldset data-step="3" class="step-panel hidden space-y-5" aria-labelledby="step3-heading">
+                    <legend id="step3-heading" class="text-xl font-bold text-orange-300">Paso 3: Pago</legend>
+
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium">Metodo de pago</p>
+                        <div class="grid gap-3 sm:grid-cols-3">
+                            <label class="rounded-xl border border-zinc-700 p-3 hover:border-orange-400">
+                                <input type="radio" name="paymentMethod" value="tarjeta" required
+                                    class="mr-2 accent-orange-500" />Tarjeta
+                            </label>
+                            <label class="rounded-xl border border-zinc-700 p-3 hover:border-orange-400">
+                                <input type="radio" name="paymentMethod" value="transferencia" required
+                                    class="mr-2 accent-orange-500" />Transferencia
+                            </label>
+                            <label class="rounded-xl border border-zinc-700 p-3 hover:border-orange-400">
+                                <input type="radio" name="paymentMethod" value="efectivo" required
+                                    class="mr-2 accent-orange-500" />Efectivo en sede
+                            </label>
+                        </div>
+                        <p class="mt-1 text-sm text-red-400" data-error-for="paymentMethod"></p>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="cardNumber" class="mb-1 block text-sm font-medium">Numero de tarjeta</label>
+                            <input id="cardNumber" name="cardNumber" type="text" inputmode="numeric" maxlength="19"
+                                placeholder="1234 5678 9012 3456"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400" />
+                            <p class="mt-1 text-sm text-red-400" data-error-for="cardNumber"></p>
+                        </div>
+
+                        <div>
+                            <label for="cardHolder" class="mb-1 block text-sm font-medium">Titular</label>
+                            <input id="cardHolder" name="cardHolder" type="text" placeholder="Nombre en la tarjeta"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400" />
+                            <p class="mt-1 text-sm text-red-400" data-error-for="cardHolder"></p>
+                        </div>
+
+                        <div>
+                            <label for="expiry" class="mb-1 block text-sm font-medium">Vencimiento (MM/AA)</label>
+                            <input id="expiry" name="expiry" type="text" maxlength="5" placeholder="08/29"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400" />
+                            <p class="mt-1 text-sm text-red-400" data-error-for="expiry"></p>
+                        </div>
+
+                        <div>
+                            <label for="cvv" class="mb-1 block text-sm font-medium">CVV</label>
+                            <input id="cvv" name="cvv" type="password" maxlength="4" inputmode="numeric"
+                                placeholder="123"
+                                class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-orange-50 outline-none transition focus:border-orange-400" />
+                            <p class="mt-1 text-sm text-red-400" data-error-for="cvv"></p>
+                        </div>
+                    </div>
+
+                    <label class="inline-flex items-start gap-3 rounded-xl border border-zinc-700 p-3">
+                        <input type="checkbox" id="terms" name="terms" required class="mt-1 accent-orange-500" />
+                        <span class="text-sm">Acepto terminos, condiciones y autorizo tratamiento de datos para crear mi
+                            plan.</span>
+                    </label>
+                    <p class="-mt-3 text-sm text-red-400" data-error-for="terms"></p>
+                </fieldset>
+
+                <div class="flex flex-col gap-3 border-t border-zinc-800 pt-6 sm:flex-row sm:justify-between">
+                    <button id="prevBtn" type="button"
+                        class="rounded-xl border border-zinc-600 px-5 py-3 font-semibold text-orange-200 transition hover:border-orange-400 hover:text-orange-100 disabled:cursor-not-allowed disabled:opacity-40">
+                        Anterior
+                    </button>
+
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <button id="nextBtn" type="button"
+                            class="rounded-xl bg-orange-500 px-5 py-3 font-semibold text-black transition hover:bg-orange-400">
+                            Siguiente
+                        </button>
+                        <button id="submitBtn" type="submit"
+                            class="hidden rounded-xl bg-orange-500 px-5 py-3 font-semibold text-black transition hover:bg-orange-400">
+                            Finalizar registro
+                        </button>
+                    </div>
+                </div>
+
+                <p id="formMessage" class="text-sm font-semibold" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
